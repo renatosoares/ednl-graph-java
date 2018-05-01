@@ -11,9 +11,9 @@ public interface IVertex
 	/**
 	 * 
 	 * @param key
-	 * @return
+	 * @return void
 	 */
-	public abstract int setkey(int key);
+	public abstract void setkey(int key);
 	
 	/**
 	 * 
@@ -26,6 +26,6 @@ public interface IVertex
 	 * @param value
 	 * @return
 	 */
-	public abstract double setValue(double value);
+	public abstract void setValue(double value);
 	
 }
