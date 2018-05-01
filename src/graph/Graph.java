@@ -88,5 +88,4 @@ public class Graph implements IGraph
 	public void insertEdgeDirected(Vertex vertexOne, Vertex vertexTwo, int value) {
 		
 	}
-
 }
