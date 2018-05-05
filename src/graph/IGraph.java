@@ -1,7 +1,6 @@
 package graph;
 
 import java.util.ArrayList;
-import java.util.Vector;
 
 public interface IGraph 
 {
@@ -16,7 +15,7 @@ public interface IGraph
     /**
 	 * Retorna um array armazenando os vértices finais da aresta e.
 	 */
-    public abstract Vector finalVertex(Edge e);
+    public abstract ArrayList<Vertex> finalVertex(Edge e);
     
     /**
      * Retorna o vértice oposto de v em e, ou seja, o vértice final da aresta e separado do vértice v. Um erro ocorre se e não é incidente a v
@@ -50,37 +49,33 @@ public interface IGraph
      * Insere e retorna uma nova aresta não-dirigida (vertexOne, vertexTwo) armazenando o elemento value
      */
     public abstract Edge insertEdge(Vertex vertexOne, Vertex vertexTwo, double value);
-	/**
-     * Insere e retorna uma nova aresta não-dirigida (vertexOne, vertexTwo)
-     */
-	public abstract Edge insertEdge(Vertex vertexOne, Vertex vertexTwo);
 
     /**
      * Remove o vértice vertex ( e todas as arestas incidentes) e retorna o elemento armazenado em vertex
      */
-	public abstract int removeVertex(Vertex vertex);
+	public abstract void removeVertex(Vertex vertex);
 
     /**
      * Remove a aresta edge, retornando o elemento armazenado
      */
-    public abstract int removeEdge(Edge edge);
+    public abstract void removeEdge(Edge edge);
     
 // %%%%%%%%%%%%%%%%%%%%% Métodos Interadores simplificado %%%%%%%%%%%%%%%%%%%%% //    
 
     /**
      * Retorna uma coleção de todas as arestas incidentes sob o vértice v
      */
-    public abstract Vector edgesIncidents(Vertex v);
+    public abstract ArrayList<Edge> edgesIncidents(Vertex v);
     
     /**
      * Retorna uma coleção de todos os vértices no grafo.
      */
-    public abstract Vector vertex();
+    public abstract ArrayList<Vertex> vertex();
 
     /**
      * Retorna uma coleçao de todas as arestas no grafo
      */
-	public abstract Vector edge();
+	public abstract ArrayList<Edge> edge();
     
 // %%%%%%%%%%%%%%%%%%%%% %%%%%%%%%%%%%%%%% %%%%%%%%%%%%%%%%%%%%% // 
 

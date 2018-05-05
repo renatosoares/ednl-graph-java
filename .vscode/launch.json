@@ -6,21 +6,14 @@
     "configurations": [
         {
             "type": "java",
-            "name": "Debug (Launch)-Principal<ednl-graph-java8>",
+            "name": "Debug (Launch)-Main<ednl-graph-java8>",
             "request": "launch",
             "cwd": "${workspaceFolder}",
             "console": "internalConsole",
             "stopOnEntry": false,
-            "mainClass": "graph.Principal",
+            "mainClass": "graph.Main",
             "projectName": "ednl-graph-java8",
             "args": ""
-        },
-        {
-            "type": "java",
-            "name": "Debug (Attach)",
-            "request": "attach",
-            "hostName": "localhost",
-            "port": 0
         }
     ]
 }
