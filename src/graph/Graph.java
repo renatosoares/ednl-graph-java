@@ -111,7 +111,9 @@ public class Graph implements IGraph
 	@Override
     public void removeEdge(Edge edge)
     {
-
+        int indexOne = searchIndex(edge.getVertexOrigin().getKey());
+        int indexTwo = searchIndex(edge.getVertexOrigin().getKey());
+        this.matrixAdjacent[indexOne][indexTwo] = this.matrixAdjacent[indexTwo][indexOne] = null;
     }
 
 	@Override
