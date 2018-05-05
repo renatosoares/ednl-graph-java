@@ -165,6 +165,17 @@ public class Graph implements IGraph
         }
     }
 
+    public void showMatrix() 
+    {
+        for (int f = 0; f < this.quantityVertex; f++) {
+
+            for (int g = 0; g < this.quantityVertex; g++) {
+                System.out.print(this.matrixAdjacent[f][g] + " ");
+            }
+            System.out.println();
+        }
+    }
+
     private int searchIndex(int key)
     {
         Iterator<Vertex> i = this.vertex.iterator();
