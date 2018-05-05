@@ -125,7 +125,7 @@ public class Graph implements IGraph
 	@Override
     public ArrayList<Vertex> vertex() 
     {
-		return null;
+		return this.vertex;
 	}
 
 	@Override
