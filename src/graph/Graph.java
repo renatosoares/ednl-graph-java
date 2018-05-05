@@ -143,7 +143,7 @@ public class Graph implements IGraph
 	@Override
     public int order() 
     {
-		return 0;
+		return this.quantityVertex;
 	}
 
 	@Override
