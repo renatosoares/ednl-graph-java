@@ -35,7 +35,12 @@ public class Graph implements IGraph
 	@Override
     public ArrayList<Vertex> finalVertex(Edge e)
     {
-		return null;
+        ArrayList<Vertex> v = new ArrayList<Vertex>();
+
+        v.add(e.getVertexOrigin());
+        v.add(e.getVertexDestination());
+
+		return v;
 	}
 
 	@Override
@@ -46,7 +51,10 @@ public class Graph implements IGraph
 	@Override
     public boolean isAdjacent(Vertex v, Vertex w)
     {
-		return false;
+        int indexOne = searchIndex(v.getKey());
+        int indexTwo = searchIndex(w.getKey());
+
+        return (this.matrixAdjacent[indexOne][indexTwo]) != null;
 	}
 
 	@Override
@@ -166,6 +174,18 @@ public class Graph implements IGraph
 		
     }
     
+    @Override
+    public Edge getEdge(Vertex v, Vertex w) 
+    {
+        int indexOne = searchIndex(v.getKey());
+        int indexTwo = searchIndex(w.getKey());
+
+        return (this.matrixAdjacent[indexOne][indexTwo]);
+    }
+
+    /**
+     * 
+     */
     public void showVertex()
     {
         for (int f = 0; f < this.vertex.size(); f++) {
@@ -173,6 +193,9 @@ public class Graph implements IGraph
         }
     }
 
+    /**
+     * 
+     */
     public void showMatrix() 
     {
         for (int f = 0; f < this.quantityVertex; f++) {
@@ -184,6 +207,9 @@ public class Graph implements IGraph
         }
     }
 
+    /**
+     * 
+     */
     private int searchIndex(int key)
     {
         Iterator<Vertex> i = this.vertex.iterator();

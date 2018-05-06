@@ -37,6 +37,11 @@ public interface IGraph
      */
     public abstract void replaceEdge(Edge v, int x);
 
+    /**
+     * Retorna uma aresta a partir dos vetores adicionados
+     */
+    public abstract Edge getEdge(Vertex v, Vertex w);
+
 
 // %%%%%%%%%%%%%%%%%%%%% Atualização simplificado %%%%%%%%%%%%%%%%%%%%% //
     
