@@ -131,7 +131,15 @@ public class Graph implements IGraph
 	@Override
     public ArrayList<Edge> edge() 
     {
-		return null;
+        ArrayList<Edge> al = new ArrayList<Edge>();
+
+        for (int f = 0; f < this.quantityVertex; f++) {
+            for (int s = 0; s < this.quantityVertex; s++) {
+                al.add(this.matrixAdjacent[f][s]);
+            }
+        }
+        
+		return al;
 	}
 
 	@Override
