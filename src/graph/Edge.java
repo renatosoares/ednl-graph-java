@@ -8,7 +8,7 @@ public class Edge implements IEdge
     private boolean directed;
 
     /**
-     * 
+     *
      */
     public Edge(Vertex vertexOrigin, Vertex vertexDestination)
     {
@@ -19,7 +19,7 @@ public class Edge implements IEdge
     }
 
     /**
-     * 
+     *
      */
     public Edge(Vertex vertexOrigin, Vertex vertexDestination, double value)
     {
@@ -31,7 +31,7 @@ public class Edge implements IEdge
     }
 
     /**
-     * 
+     *
      */
     public Edge(Vertex vertexOrigin, Vertex vertexDestination, double value, boolean directed)
     {
@@ -43,56 +43,60 @@ public class Edge implements IEdge
     }
 
 	@Override
-    public Vertex getVertexOrigin() 
+    public Vertex getVertexOrigin()
     {
 		return vertexOrigin;
 	}
 
 	@Override
-    public void setVertexOrigin(Vertex vertexOrigin) 
+    public void setVertexOrigin(Vertex vertexOrigin)
     {
 		this.vertexOrigin = vertexOrigin;
 	}
 
 	@Override
-    public Vertex getVertexDestination() 
+    public Vertex getVertexDestination()
     {
 		return vertexDestination;
 	}
 
 	@Override
-    public void setVertexDestination(Vertex vertexDestination) 
+    public void setVertexDestination(Vertex vertexDestination)
     {
 		this.vertexDestination = vertexDestination;
 	}
 
 	@Override
-    public double getValue() 
+    public double getValue()
     {
 		return value;
 	}
 
 	@Override
-    public void setValue(double value) 
+    public void setValue(double value)
     {
 		this.value = value;
 	}
 
 	@Override
-    public boolean isDirected() 
+    public boolean isDirected()
     {
 		return directed;
 	}
 
 	@Override
-    public void setDirected(boolean directed) 
+    public void setDirected(boolean directed)
     {
 		this.directed = directed;
     }
-    
+
     public String toString()
     {
-        return "||-> cost => " + this.value;
+        return "| cost => " + this.value + " | ";
     }
-    
+
+    public void addLinkedList()
+    {
+        // cada edge tem um array list com os valores, de cada aresta
+    }
 }

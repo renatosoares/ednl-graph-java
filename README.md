@@ -3,12 +3,12 @@ Graph implemented in java, using matrix, where each cell has a linked list.
 
 Compile for bin folder
 ```bash
-javac -Xlint:unchecked -d bin src/graph/Principal.java
+javac -Xlint:unchecked -d bin src/graph/*.java
 ```
 
 Run from bin folder
 ```bash
-java -classpath bin graph.Principal 
+java -classpath bin graph.Main
 ```
 
 Application content for academic purposes

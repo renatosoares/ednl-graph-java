@@ -1,15 +1,13 @@
 package graph;
 
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.LinkedList;
-import java.util.Vector;
 
 public class ComparePerformance {
     public static final void main(String[] cmd_lineParams)  {
 
 		ArrayList<Integer> arrayList = new ArrayList<Integer>();
-        
+
         LinkedList<Integer> linkedList = new LinkedList<Integer>();
 
 		// ArrayList add
@@ -71,5 +69,5 @@ public class ComparePerformance {
 		endTime = System.nanoTime();
 		duration = endTime - startTime;
 		System.out.println("LinkedList remove: " + duration);
-    } 
+    }
   }

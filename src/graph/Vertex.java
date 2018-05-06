@@ -43,7 +43,7 @@ public class Vertex implements IVertex
     
     public String toString()
     {
-        return "key => " + key + " |-> value => " + value;
+        return "key => " + key + " |-> value => " + value + " |#| ";
     }
 
 }
