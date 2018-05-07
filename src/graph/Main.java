@@ -35,6 +35,7 @@ public class Main
         g.insertEdge(vertex.get(3), vertex.get(1), 30);
         g.insertEdge(vertex.get(3), vertex.get(2), 15);
         g.insertEdge(vertex.get(3), vertex.get(2), 35);
+        g.insertEdge(vertex.get(3), vertex.get(2), 47);
 
         g.showMatrix();
 

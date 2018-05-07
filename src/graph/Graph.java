@@ -72,19 +72,18 @@ public class Graph implements IGraph
 	@Override
     public Edge insertEdge(Vertex vertexOne, Vertex vertexTwo, double value)
     {
-        Edge e = new Edge(vertexOne, vertexTwo, value);
+        Edge e;
 
         int indexOne = this.findIndex(vertexOne.getKey());
         int indexTwo = this.findIndex(vertexTwo.getKey());
 
-        // ArrayList<Edge> l = new ArrayList<Edge>();
-
-        // if ((this.matrixAdjacent[indexOne][indexTwo]) == null) {
-        //     l.add(e);
-        // } else {
-        //     l = this.matrixAdjacent[indexOne][indexTwo];
-        //     l.add(e);
-        // }
+        if ((this.matrixAdjacent[indexOne][indexTwo]) == null) {
+            e = new Edge();
+            e.storeLinkedList(vertexOne, vertexTwo, value, new Edge());
+        } else {
+            e = this.matrixAdjacent[indexOne][indexTwo];
+            e.updateLinkedList(vertexOne, vertexTwo, value, new Edge());
+        }
 
         this.matrixAdjacent[indexTwo][indexOne] = e;
         this.matrixAdjacent[indexOne][indexTwo] = matrixAdjacent[indexTwo][indexOne];
