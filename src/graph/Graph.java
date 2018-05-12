@@ -6,7 +6,7 @@ public class Graph implements IGraph
 {
     private int quantityVertex;
     private ArrayList<Vertex> vertex;
-    private Edge[][] matrixAdjacent;
+    private ArrayList[][] matrixAdjacent;
 
     /**
      *
@@ -27,7 +27,7 @@ public class Graph implements IGraph
     {
         this.quantityVertex = this.quantityVertex + 1;
         this.vertex.add(vertex);
-        this.matrixAdjacent = new Edge[this.quantityVertex][this.quantityVertex];
+        this.matrixAdjacent = new ArrayList[this.quantityVertex][this.quantityVertex];
 
         return vertex;
     }
@@ -72,23 +72,20 @@ public class Graph implements IGraph
 	@Override
     public Edge insertEdge(Vertex vertexOne, Vertex vertexTwo, double value)
     {
-        Edge e;
+        Edge e = new Edge(vertexOne, vertexTwo, value);
 
         int indexOne = this.findIndex(vertexOne.getKey());
         int indexTwo = this.findIndex(vertexTwo.getKey());
 
-        if ((this.matrixAdjacent[indexOne][indexTwo]) == null) {
-            e = new Edge();
-            e.storeLinkedList(vertexOne, vertexTwo, value, new Edge());
+        if (this.matrixAdjacent[indexOne][indexTwo] == null){
+            this.matrixAdjacent[indexTwo][indexOne] = this.matrixAdjacent[indexOne][indexTwo] = new ArrayList();
+
+            this.matrixAdjacent[indexOne][indexTwo].add(e);
         } else {
-            e = this.matrixAdjacent[indexOne][indexTwo];
-            e.updateLinkedList(vertexOne, vertexTwo, value, new Edge());
+            this.matrixAdjacent[indexOne][indexTwo].add(e);
         }
 
-        this.matrixAdjacent[indexTwo][indexOne] = e;
-        this.matrixAdjacent[indexOne][indexTwo] = matrixAdjacent[indexTwo][indexOne];
-
-		return e;
+        return e;
 	}
 
 	@Override
@@ -100,7 +97,7 @@ public class Graph implements IGraph
 
         this.vertex.remove(index); // remove o vértice do ArrayList
 
-        Edge tempMatrixAdjacent[][] = new Edge[this.quantityVertex][this.quantityVertex];
+        ArrayList tempMatrixAdjacent[][] = new ArrayList[this.quantityVertex][this.quantityVertex];
 
         int ff = 0;
         int gg;
@@ -146,9 +143,9 @@ public class Graph implements IGraph
 	}
 
 	@Override
-    public ArrayList<Edge> edge()
+    public ArrayList edge()
     {
-        ArrayList<Edge> al = new ArrayList<Edge>();
+        ArrayList al = new ArrayList();
 
         for (int f = 0; f < this.quantityVertex; f++) {
             for (int s = 0; s < this.quantityVertex; s++) {
@@ -184,7 +181,7 @@ public class Graph implements IGraph
     }
 
     @Override
-    public Edge getEdge(Vertex v, Vertex w)
+    public ArrayList getEdge(Vertex v, Vertex w)
     {
         int indexOne = findIndex(v.getKey());
         int indexTwo = findIndex(w.getKey());
@@ -210,7 +207,11 @@ public class Graph implements IGraph
         for (int f = 0; f < this.quantityVertex; f++) {
 
             for (int g = 0; g < this.quantityVertex; g++) {
-                System.out.print(this.matrixAdjacent[f][g] + " ");
+                if (this.matrixAdjacent[f][g] != null) {
+                    System.out.print(this.matrixAdjacent[f][g] + " ");
+                } else {
+                    System.out.print( " ... ");
+                }
             }
             System.out.println();
         }

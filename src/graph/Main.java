@@ -31,11 +31,15 @@ public class Main
         System.out.println();
 
         g.insertEdge(vertex.get(0), vertex.get(1), 40);
+
         g.insertEdge(vertex.get(0), vertex.get(2), 10);
+
         g.insertEdge(vertex.get(3), vertex.get(1), 30);
+
         g.insertEdge(vertex.get(3), vertex.get(2), 15);
+
         g.insertEdge(vertex.get(3), vertex.get(2), 35);
-        g.insertEdge(vertex.get(3), vertex.get(2), 47);
+        g.insertEdge(vertex.get(3), vertex.get(2), 27);
 
         g.showMatrix();
 

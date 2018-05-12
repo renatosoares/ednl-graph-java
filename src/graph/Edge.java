@@ -14,9 +14,11 @@ public class Edge implements IEdge
     /**
      *
      */
-    public Edge()
+    public Edge(Vertex vertexOrigin, Vertex vertexDestination, double value)
     {
-
+        this.vertexOrigin = vertexOrigin;
+        this.vertexDestination = vertexDestination;
+        this.value = value;
     }
 
 	@Override
@@ -69,39 +71,13 @@ public class Edge implements IEdge
 
     public String toString()
     {
-        String outValue = new String();
-        Iterator<Edge> edgeIterator = edgeCollection.iterator();
+        // String outValue = new String();
+        // Iterator<Edge> edgeIterator = edgeCollection.iterator();
+        //
+        // while (edgeIterator.hasNext()) {
+        //     outValue += " " + edgeIterator.next().getValue();
+        // }
 
-        while (edgeIterator.hasNext()) {
-            outValue += " " + edgeIterator.next().getValue();
-        }
-
-		return "| cost => " + outValue + " | ";
-    }
-
-    /**
-     *
-     */
-    public void storeLinkedList(Vertex vertexOrigin, Vertex vertexDestination, double value, Edge e)
-    {
-        // cada edge tem um array list com os valores, de cada aresta
-        e.setVertexOrigin(vertexOrigin);
-        e.setVertexDestination(vertexDestination);
-        e.setValue(value);
-
-        this.edgeCollection = new ArrayList<Edge>();
-
-        this.edgeCollection.add(e);
-    }
-
-    /**
-     *
-     */
-    public void updateLinkedList(Vertex vertexOrigin, Vertex vertexDestination, double value, Edge e)
-    {
-        e.setVertexOrigin(vertexOrigin);
-        e.setVertexDestination(vertexDestination);
-        e.setValue(value);
-        this.edgeCollection.add(e);
+		return "| cost => " + this.value + " | ";
     }
 }
