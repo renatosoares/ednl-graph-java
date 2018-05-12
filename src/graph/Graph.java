@@ -123,11 +123,16 @@ public class Graph implements IGraph
 	}
 
 	@Override
-    public void removeEdge(Edge edge)
+    public void removeEdge(Vertex v, Vertex w, int key)
     {
-        int indexOne = findIndex(edge.getVertexOrigin().getKey());
-        int indexTwo = findIndex(edge.getVertexOrigin().getKey());
-        this.matrixAdjacent[indexOne][indexTwo] = this.matrixAdjacent[indexTwo][indexOne] = null;
+        int indexOne = findIndex(v.getKey());
+        int indexTwo = findIndex(w.getKey());
+
+        if (this.matrixAdjacent[indexOne][indexTwo].isEmpty() && this.matrixAdjacent[indexTwo][indexOne].isEmpty()) {
+            this.matrixAdjacent[indexOne][indexTwo] = this.matrixAdjacent[indexTwo][indexOne] = null;
+        } else {
+            this.matrixAdjacent[indexOne][indexTwo].remove(key);
+        }
     }
 
 	@Override
@@ -186,7 +191,7 @@ public class Graph implements IGraph
         int indexOne = findIndex(v.getKey());
         int indexTwo = findIndex(w.getKey());
 
-        return (this.matrixAdjacent[indexOne][indexTwo]);
+        return this.matrixAdjacent[indexOne][indexTwo];
     }
 
     /**

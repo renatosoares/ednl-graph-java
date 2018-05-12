@@ -19,6 +19,8 @@ public class Main
         g.insertVertex(v4);
 
         System.out.print("%%%%%%%% insere vértice %%%%%%%%");
+        System.out.println();
+
         g.showVertex();
 
         System.out.println();
@@ -45,6 +47,25 @@ public class Main
 
         System.out.println();
 
-        System.out.print(g.edge());
+
+        System.out.print("%%%%%%%% remoção aresta %%%%%%%%");
+        System.out.println();
+
+        g.removeEdge(vertex.get(3), vertex.get(2), 0);
+        g.removeEdge(vertex.get(3), vertex.get(2), 0);
+        g.removeEdge(vertex.get(3), vertex.get(2), 0);
+        g.removeEdge(vertex.get(3), vertex.get(2), 0);
+
+        g.showMatrix();
+
+        System.out.println();
+
+        System.out.print("%%%%%%%% remoção vértice %%%%%%%%");
+        System.out.println();
+
+        g.removeVertex(vertex.get(0));
+
+        g.showMatrix();
+
     }
 }

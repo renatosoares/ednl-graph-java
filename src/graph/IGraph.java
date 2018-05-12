@@ -63,7 +63,7 @@ public interface IGraph
     /**
      * Remove a aresta edge, retornando o elemento armazenado
      */
-    public abstract void removeEdge(Edge edge);
+    public abstract void removeEdge(Vertex v, Vertex w, int key);
 
 // %%%%%%%%%%%%%%%%%%%%% Métodos Interadores simplificado %%%%%%%%%%%%%%%%%%%%% //
 

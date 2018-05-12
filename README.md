@@ -3,7 +3,7 @@ Graph implemented in java, using matrix, where each cell has a linked list.
 
 Compile for bin folder
 ```bash
-javac -Xlint:unchecked -d bin src/graph/*.java
+javac -Xlint -d bin src/graph/*.java
 ```
 
 Run from bin folder
@@ -16,4 +16,4 @@ Application content for academic purposes
 #### :mortar_board:
 #### Estruturas de Dados não Lineares
 ##### Tecnologia em Análise e Desenvolvimento de Sistemas
-###### Instituto Federal de Educação, Ciência e Tecnologia 
+###### Instituto Federal de Educação, Ciência e Tecnologia
