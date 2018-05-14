@@ -12,11 +12,13 @@ public class Main
         Vertex v2 = new Vertex(2, 13.00);
         Vertex v3 = new Vertex(3, 12.00);
         Vertex v4 = new Vertex(4, 14.00);
+        Vertex v5 = new Vertex(5, 15.00);
 
         g.insertVertex(v1);
         g.insertVertex(v2);
         g.insertVertex(v3);
         g.insertVertex(v4);
+        g.insertVertex(v5);
 
         System.out.print("%%%%%%%% insere vértice %%%%%%%%");
         System.out.println();
@@ -34,14 +36,19 @@ public class Main
 
         g.insertEdge(vertex.get(0), vertex.get(1), 40);
 
-        g.insertEdge(vertex.get(0), vertex.get(2), 10);
+        g.insertEdge(vertex.get(0), vertex.get(3), 10);
 
-        g.insertEdge(vertex.get(3), vertex.get(1), 30);
+        g.insertEdge(vertex.get(2), vertex.get(0), 30);
 
-        g.insertEdge(vertex.get(3), vertex.get(2), 15);
+        g.insertEdge(vertex.get(2), vertex.get(3), 15);
 
-        g.insertEdge(vertex.get(3), vertex.get(2), 35);
-        g.insertEdge(vertex.get(3), vertex.get(2), 27);
+        g.insertEdge(vertex.get(4), vertex.get(3), 35);
+        g.insertEdge(vertex.get(4), vertex.get(1), 27);
+
+        g.insertEdge(vertex.get(1), vertex.get(2), 33);
+        g.insertEdge(vertex.get(1), vertex.get(2), 41);
+
+
 
         g.showMatrix();
 
@@ -51,10 +58,7 @@ public class Main
         System.out.print("%%%%%%%% remoção aresta %%%%%%%%");
         System.out.println();
 
-        g.removeEdge(vertex.get(3), vertex.get(2), 0);
-        g.removeEdge(vertex.get(3), vertex.get(2), 0);
-        g.removeEdge(vertex.get(3), vertex.get(2), 0);
-        g.removeEdge(vertex.get(3), vertex.get(2), 0);
+        g.removeEdge(vertex.get(1), vertex.get(2), 0);
 
         g.showMatrix();
 
@@ -66,6 +70,12 @@ public class Main
         g.removeVertex(vertex.get(0));
 
         g.showMatrix();
+
+        System.out.println();
+
+        System.out.print("%%%%%%%% Verifica se existe caminho Eureliano %%%%%%%%");
+        System.out.println();
+        System.out.print(g.eulerianPath());
 
     }
 }

@@ -241,4 +241,16 @@ public class Graph implements IGraph
 
         return 0;
     }
+
+    public String eulerianPath()
+    {
+        EulerianPath path = new EulerianPath(this.matrixAdjacent, this.quantityVertex);
+
+        if (path.hasPath()) {
+            return "Existe caminho Euleriano.";
+        } else {
+            return "Não existe caminho Euleriano.";
+        }
+
+    }
 }
