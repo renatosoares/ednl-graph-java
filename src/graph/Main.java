@@ -8,17 +8,17 @@ public class Main
     {
         Graph g = new Graph();
 
+        Vertex v0 = new Vertex(0, 9.00);
         Vertex v1 = new Vertex(1, 10.00);
         Vertex v2 = new Vertex(2, 13.00);
         Vertex v3 = new Vertex(3, 12.00);
         Vertex v4 = new Vertex(4, 14.00);
-        Vertex v5 = new Vertex(5, 15.00);
 
+        g.insertVertex(v0);
         g.insertVertex(v1);
         g.insertVertex(v2);
         g.insertVertex(v3);
         g.insertVertex(v4);
-        g.insertVertex(v5);
 
         System.out.print("%%%%%%%% insere vértice %%%%%%%%");
         System.out.println();

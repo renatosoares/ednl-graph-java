@@ -1,5 +1,7 @@
 package graph;
 
+import java.util.ArrayList;
+
 interface IGoodman
 {
     /*
@@ -21,4 +23,6 @@ interface IGoodman
         senao
             G é conexo
     */
+
+    public boolean hasConnection(ArrayList<Vertex> vetex);
 }
