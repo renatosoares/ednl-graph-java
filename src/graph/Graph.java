@@ -44,8 +44,9 @@ public class Graph implements IGraph
 	}
 
 	@Override
-	public Vertex opposite(Vertex v, Edge e) throws Exception {
-		return null;
+    public Vertex opposite(Vertex v, Edge e) throws Exception
+    {
+		return null; // TODO
 	}
 
 	@Override
@@ -60,13 +61,13 @@ public class Graph implements IGraph
 	@Override
     public void replaceVertex(Vertex v, int x)
     {
-
+        // TODO
 	}
 
 	@Override
     public void replaceEdge(Edge v, int x)
     {
-
+        // TODO
 	}
 
 	@Override
@@ -138,7 +139,7 @@ public class Graph implements IGraph
 	@Override
     public ArrayList<Edge> edgesIncidents(Vertex v)
     {
-		return null;
+		return null; // TODO
 	}
 
 	@Override
@@ -164,7 +165,7 @@ public class Graph implements IGraph
 	@Override
     public int degree(Vertex vertex)
     {
-		return 0;
+		return 0; // TODO
 	}
 
 	@Override
@@ -176,13 +177,13 @@ public class Graph implements IGraph
 	@Override
     public boolean isDirected(Edge e)
     {
-		return false;
+		return false; // TODO
 	}
 
 	@Override
     public void insertEdgeDirected(Vertex vertexOne, Vertex vertexTwo, int value)
     {
-
+        // TODO
     }
 
     @Override

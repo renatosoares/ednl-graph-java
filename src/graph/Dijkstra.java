@@ -1,6 +1,7 @@
 package graph;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 
 /**
  * Dijkstra
@@ -10,16 +11,19 @@ public class Dijkstra implements IDijkstra
 {
     ArrayList<Vertex> S;
     ArrayList<Vertex> V;
-    int[] D;
+    double[] D;
     ArrayList<Vertex> prev;
     Vertex W;
+    Graph G;
 
 
-    public Dijkstra(ArrayList vertices)
+    public Dijkstra(ArrayList vertices, Graph G)
     {
         this.V = vertices;
-        this.D = new int[vertices.size()];
+        this.D = new double[vertices.size()];
         this.prev = new ArrayList<Vertex>();
+
+        this.G = G;
 
 
     }
@@ -30,8 +34,11 @@ public class Dijkstra implements IDijkstra
         this.S.add(source);
         this.V.remove(source);
         int positionCurrentVertex;
-        int cost;
-        int minCost;
+        double cost;
+        double minCost;
+
+        double firstValue;
+        double lastValue;
 
         for (Vertex v : this.V) {
             positionCurrentVertex = this.V.indexOf(v);
@@ -41,6 +48,7 @@ public class Dijkstra implements IDijkstra
             this.D[positionCurrentVertex] = cost;
 
         }
+
         positionCurrentVertex = 0;
         while (this.S.size() != (this.V.size() -1)) {
 
@@ -48,7 +56,10 @@ public class Dijkstra implements IDijkstra
 
                 positionCurrentVertex = this.V.indexOf(v);
 
-                minCost = Math.min(this.D[positionCurrentVertex], (this.D[positionCurrentVertex + 1] + hasEdge(this.prev.get(positionCurrentVertex + 1), v)));
+                firstValue = this.D[positionCurrentVertex];
+                lastValue = this.D[positionCurrentVertex + 1] + hasEdge(this.prev.get(positionCurrentVertex + 1), v);
+
+                minCost = Math.min(firstValue, lastValue);
                 this.D[positionCurrentVertex] = minCost;
 
                 if (this.D[positionCurrentVertex + 1] + hasEdge(this.prev.get(positionCurrentVertex + 1), v) > this.D[positionCurrentVertex]) {
@@ -57,17 +68,48 @@ public class Dijkstra implements IDijkstra
             }
         }
 
-		return null;
+		return prev;
     }
 
     /**
      * retorna custo se existir aresta adjacente
      */
-    protected int hasEdge(Vertex source, Vertex next) // TODO
+    protected double hasEdge(Vertex source, Vertex next) // TODO
     {
-        return 0;
+        ArrayList edgesList;
+        if (! this.G.isAdjacent(source, next)) {
+            return Double.POSITIVE_INFINITY;
+        } else {
+            edgesList = this.G.getEdge(source, next);
+            return this.getMinValue(edgesList);
+        }
     }
 
+    /**
+     * Pega o valor mínimo da aresta paralela
+     */
+    private double getMinValue(ArrayList<Edge> list)
+    {
+        Edge e = list.get(0);
+        double minValue = e.getValue();
 
+        for (int i = 1; i < list.size(); i++) {
+            if (list.get(i).getValue() < minValue) {
+                minValue = list.get(i).getValue();
+            }
+        }
+
+        return minValue;
+    }
+
+    @Override
+    public String toString()
+    {
+        String msg = "custo -> ";
+        for (Vertex minCost : this.prev) {
+            msg = msg + " " + Double.toString(minCost.getValue()) + " | ";
+        }
+        return "";
+    }
 
 }
