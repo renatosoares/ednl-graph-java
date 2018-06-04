@@ -34,19 +34,20 @@ public class Main
 
         System.out.println();
 
-        g.insertEdge(vertex.get(0), vertex.get(1), 40);
+        g.insertEdge(vertex.get(0), vertex.get(1), 10);
 
-        g.insertEdge(vertex.get(0), vertex.get(3), 10);
+        g.insertEdge(vertex.get(1), vertex.get(2), 50);
 
-        g.insertEdge(vertex.get(2), vertex.get(0), 30);
+        g.insertEdge(vertex.get(2), vertex.get(3), 20);
 
-        g.insertEdge(vertex.get(2), vertex.get(3), 15);
+        g.insertEdge(vertex.get(3), vertex.get(4), 60);
 
-        g.insertEdge(vertex.get(4), vertex.get(3), 35);
-        g.insertEdge(vertex.get(4), vertex.get(1), 27);
+        g.insertEdge(vertex.get(4), vertex.get(2), 10);
+        g.insertEdge(vertex.get(3), vertex.get(0), 30);
+        g.insertEdge(vertex.get(4), vertex.get(0), 100);
 
-        g.insertEdge(vertex.get(1), vertex.get(2), 33);
-        g.insertEdge(vertex.get(1), vertex.get(2), 41);
+        // g.insertEdge(vertex.get(1), vertex.get(2), 33);
+        // g.insertEdge(vertex.get(1), vertex.get(2), 41);
 
 
 
@@ -58,7 +59,7 @@ public class Main
         System.out.print("%%%%%%%% remoção aresta %%%%%%%%");
         System.out.println();
 
-        g.removeEdge(vertex.get(1), vertex.get(2), 0);
+        // g.removeEdge(vertex.get(1), vertex.get(2), 0);
 
         g.showMatrix();
 
@@ -67,7 +68,7 @@ public class Main
         System.out.print("%%%%%%%% remoção vértice %%%%%%%%");
         System.out.println();
 
-        g.removeVertex(vertex.get(0));
+        // g.removeVertex(vertex.get(0));
 
         g.showMatrix();
 
@@ -76,6 +77,14 @@ public class Main
         System.out.print("%%%%%%%% Verifica se existe caminho Eureliano %%%%%%%%");
         System.out.println();
         System.out.print(g.eulerianPath());
+
+        System.out.println();
+        System.out.print("%%%%%%%% dijkstra %%%%%%%%");
+
+        Dijkstra dkt = new Dijkstra(g.vertex(), g);
+        dkt.shortestPath(v0);
+        System.out.print(dkt);
+        System.out.println();
 
     }
 }
