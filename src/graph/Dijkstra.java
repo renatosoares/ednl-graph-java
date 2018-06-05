@@ -30,7 +30,6 @@ public class Dijkstra implements IDijkstra
     public ArrayList shortestPath(Vertex source)
     {
         this.S.add(source);
-        // this.V.remove(source);
         int positionCurrentVertex;
         double cost;
         double minCost;
@@ -45,7 +44,7 @@ public class Dijkstra implements IDijkstra
 
             cost = this.hasEdge(source, v);
 
-            // this.prev.add(positionCurrentVertex, v);
+            this.prev.add(positionCurrentVertex, this.V.get(0));
             this.D[positionCurrentVertex] = cost;
 
         }
@@ -54,10 +53,10 @@ public class Dijkstra implements IDijkstra
         positionCurrentVertex = 0;
 
         while (this.S.size() != this.V.size()) {
-            vertexMinCost = this.getMinCost(this.D);
+            vertexMinCost = this.getMinCost(this.D, this.S.size());
             v = this.V.get(vertexMinCost);
-            this.prev.add(vertexMinCost, v);
-            this.S.add(vertexMinCost, v);
+            this.prev.set(vertexMinCost, this.S.get(this.S.size() - 1));
+            this.S.add(v);
 
             for (Vertex w : this.V) {
                 if (this.S.contains(w)) {
@@ -65,23 +64,20 @@ public class Dijkstra implements IDijkstra
                 } else {
                     positionCurrentVertex = this.V.indexOf(w);
 
-                    firstValue = this.D[vertexMinCost];
+                    firstValue = this.D[positionCurrentVertex];
 
-                    lastValue = this.D[positionCurrentVertex] + hasEdge(w, v);
+                    lastValue =  this.D[vertexMinCost] + hasEdge(w, v);
 
                     minCost = Math.min(firstValue, lastValue);
                     this.D[positionCurrentVertex] = minCost;
 
                     if (lastValue < firstValue) {
-                        prev.set(positionCurrentVertex, w);
+                        prev.set(positionCurrentVertex, v);
                     }
 
                 }
 
             }
-            // TODO vai ter que adicionar o nova aresta com base no menor valor do array que não foi adicionado.
-            // TODO  verificar quando o valor retornado é zero.
-            // this.S.add(prev.get(this.S.size()));
         }
 
 		return prev;
@@ -125,21 +121,22 @@ public class Dijkstra implements IDijkstra
      /**
      * Pega o valor mínimo do array
      */
-    private int getMinCost(double[] list)
+    private int getMinCost(double[] list, int init)
     {
-        int init = 0;
         double minValue;
-        if (list[init] != 0) {
-            minValue = list[init];
-        } else {
-            init++;
-            minValue = list[init];
-        }
-
+        minValue = list[init];
 
         int position = init;
-        for (int i = init + 1; i < list.length; i++) {
-            if (list[i] < minValue && list[i] != 0.0) {
+        init++;
+        for (int i = init; i < list.length; i++) {
+
+            if (minValue == 0) {
+                minValue = list[i];
+                position = i;
+                continue;
+            }
+
+            if (list[i] < minValue && list[i] != 0) {
                 minValue = list[i];
                 position = i;
             }
@@ -151,9 +148,12 @@ public class Dijkstra implements IDijkstra
     @Override
     public String toString()
     {
-        String msg = "custo -> ";
-        for (double minCost : this.D) {
-            msg = msg + " " + Double.toString(minCost) + " | ";
+        String msg = "";
+        for (int i = 0; i < this.D.length; i++) {
+            if (this.D[i] == 0) {
+                continue;
+            }
+            msg = msg + " ## custo -> " + Double.toString(this.D[i]) + " | Vértice anterior -> " + this.prev.get(i).getKey() + "## " + System.lineSeparator();
         }
         return msg;
     }
