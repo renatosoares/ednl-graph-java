@@ -26,5 +26,5 @@ public interface IDepthFirstSearch
     s(v)=++t;
   }
 */
-  public void discovered();
+  public void search();
 }

@@ -1,31 +1,60 @@
 package graph;
 
+import java.util.ArrayList;
+
 public class DepthFirstSearch implements IDepthFirstSearch
 {
 
-  private ArrayList<Vertex> vertices;
-  private ArrayList<int> d;
-  private ArrayList<int> s;
-  private ADJ[];
-  private int t;
+    private ArrayList<Vertex> V;
+    private ArrayList<Integer> d;
+    private ArrayList<Integer> s;
+    private ArrayList<Vertex> ADJ;
+    private int t;
 
-  public DepthFirstSearch()
-  {
+    private Graph G;
 
-  }
-
-  public void discovered()
-  {
-
-  }
-
-  private void search()
-  {
-    for (Vertex v : this.vertices ) {
-      v.checked = 0;
+    public DepthFirstSearch(ArrayList<Vertex> vertices, Graph graph)
+    {
+        this.V = vertices;
+        this.G = graph;
     }
 
-    this.d.add(v.key(), 0);
-    this.t = 0;
-  }
+    @Override
+    public void search()
+    {
+        for (Vertex v : this.V ) {
+            v.setChecked(0);
+            this.d.add(v.getKey(), 0);
+        }
+
+        this.t = 0;
+
+        for (Vertex v : this.V) {
+            if (v.getChecked() == 0) {
+                this.visit(v);
+            }
+        }
+    }
+
+    private void visit(Vertex v)
+    {
+        v.setChecked(-1);
+        d.set(v.getKey(), ++this.t);
+
+        for (Vertex vertex : this.V) {
+            if (this.G.isAdjacent(v, vertex)) {
+                this.ADJ.add(v.getKey(), vertex);
+            }
+        }
+
+        for (Vertex w : this.ADJ) {
+            if (w.getChecked() == 0)
+            this.visit(w);
+        }
+
+        this.ADJ.clear();
+
+        v.setChecked(1);
+        this.s.add(v.getKey(), ++this.t);
+    }
 }
