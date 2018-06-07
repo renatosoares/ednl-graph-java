@@ -165,7 +165,13 @@ public class Graph implements IGraph
 	@Override
     public int degree(Vertex vertex)
     {
-		return 0; // TODO
+        int d = 0;
+        for (Vertex v : this.vertex) {
+            if (this.isAdjacent(vertex, v)) {
+                d++;
+            }
+        }
+		return d;
 	}
 
 	@Override

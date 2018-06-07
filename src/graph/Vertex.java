@@ -6,6 +6,7 @@ public class Vertex implements IVertex
     private int key;
     private double value;
     private int checked;
+    private int degree;
 
     /**
      * @param key
@@ -16,6 +17,7 @@ public class Vertex implements IVertex
         this.key = key;
         this.value = value;
         this.checked = 0;
+        this.degree = 0;
     }
 
 	@Override
@@ -51,6 +53,16 @@ public class Vertex implements IVertex
     public void setChecked(int checked)
     {
 		this.checked = checked;
+    }
+
+    public int getdegree()
+    {
+		return this.degree;
+	}
+
+    public void setdegree(int degree)
+    {
+		this.degree = degree;
     }
 
     public String toString()
