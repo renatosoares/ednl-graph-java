@@ -45,10 +45,17 @@ public class DepthFirstSearch implements IDepthFirstSearch
 
         for (Vertex vertex : this.V) {
                 if (this.G.isAdjacent(v, vertex)) {
-                    if (vertex.getChecked() == 0) {
-                        this.visit(vertex);
-                    }
+                    Edge e = (Edge) this.G.getEdge(v, vertex).get(0);
 
+                    if (e.isDirected() && e.getVertexOrigin() == v && e.getVertexDestination() == vertex) {
+                        if (vertex.getChecked() == 0) {
+                            this.visit(vertex);
+                        }
+                    } else {
+                        if (vertex.getChecked() == 0) {
+                            this.visit(vertex);
+                        }
+                    }
                 }
         }
         v.setChecked(1);

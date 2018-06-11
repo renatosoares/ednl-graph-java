@@ -73,7 +73,7 @@ public class Graph implements IGraph
 	@Override
     public Edge insertEdge(Vertex vertexOne, Vertex vertexTwo, double value)
     {
-        Edge e = new Edge(vertexOne, vertexTwo, value);
+        Edge e = new Edge(vertexOne, vertexTwo, value, false);
 
         int indexOne = this.findIndex(vertexOne.getKey());
         int indexTwo = this.findIndex(vertexTwo.getKey());
@@ -183,13 +183,24 @@ public class Graph implements IGraph
 	@Override
     public boolean isDirected(Edge e)
     {
-		return false; // TODO
+		return e.isDirected(); // TODO
 	}
 
 	@Override
-    public void insertEdgeDirected(Vertex vertexOne, Vertex vertexTwo, int value)
+    public void insertEdgeDirected(Vertex vertexOne, Vertex vertexTwo, double value)
     {
-        // TODO
+        Edge e = new Edge(vertexOne, vertexTwo, value, true);
+
+        int indexOne = this.findIndex(vertexOne.getKey());
+        int indexTwo = this.findIndex(vertexTwo.getKey());
+
+        if (this.matrixAdjacent[indexOne][indexTwo] == null){
+            this.matrixAdjacent[indexTwo][indexOne] = this.matrixAdjacent[indexOne][indexTwo] = new ArrayList();
+
+            this.matrixAdjacent[indexOne][indexTwo].add(e);
+        } else {
+            this.matrixAdjacent[indexOne][indexTwo].add(e);
+        }
     }
 
     @Override

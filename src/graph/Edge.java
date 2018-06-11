@@ -9,16 +9,16 @@ public class Edge implements IEdge
     private Vertex vertexDestination;
     private double value;
     private boolean directed;
-    private ArrayList<Edge> edgeCollection;
 
     /**
      *
      */
-    public Edge(Vertex vertexOrigin, Vertex vertexDestination, double value)
+    public Edge(Vertex vertexOrigin, Vertex vertexDestination, double value, boolean directed)
     {
         this.vertexOrigin = vertexOrigin;
         this.vertexDestination = vertexDestination;
         this.value = value;
+        this.directed = directed;
     }
 
 	@Override
@@ -71,13 +71,6 @@ public class Edge implements IEdge
 
     public String toString()
     {
-        // String outValue = new String();
-        // Iterator<Edge> edgeIterator = edgeCollection.iterator();
-        //
-        // while (edgeIterator.hasNext()) {
-        //     outValue += " " + edgeIterator.next().getValue();
-        // }
-
-		return "| cost => " + this.value + " | ";
+        return "| cost => " + this.value + " | ";
     }
 }

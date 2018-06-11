@@ -104,7 +104,7 @@ public interface IGraph
     /**
      * Inserir uma nova aresta dirigida com origem em vertexOne e destino em vertexTwo e armazenando o elemento value.
      */
-    public abstract void insertEdgeDirected(Vertex vertexOne, Vertex vertexTwo, int value);
+    public abstract void insertEdgeDirected(Vertex vertexOne, Vertex vertexTwo, double value);
 
 
 
