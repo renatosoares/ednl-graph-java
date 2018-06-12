@@ -23,43 +23,63 @@ public class BreadthFirstSearch implements IBreadthFirstSearch
     }
 
 	@Override
-    public void search()
+    public void search(int vertexKey)
     {
-        Vertex s = this.V.get(0);
+        Vertex s = this.V.get(vertexKey);
 
         for (Vertex v : this.V) {
+
+
+
             if (s == v) {
                 continue;
             }
 
             v.setChecked(0);
-            v.setChecked(-1);
-        }
 
-        this.d.add(s.getKey(), 0);
+        }
+        s.setChecked(-1);
+        this.d.add(vertexKey, 0);
         this.Q.add(s);
 
         while (this.Q.isEmpty() != true) {
             Vertex v = this.Q.remove();
 
-            for (Vertex vertex : this.V) {
-                if (this.G.isAdjacent(v, vertex) && v != vertex) {
-                    this.ADJ.add(v.getKey(), vertex);
+            for (Vertex w : this.V) {
+                if (this.G.isAdjacent(v, w)) {
+                    Edge e = (Edge) this.G.getEdge(v, w).get(0);
+
+                    if (w.getChecked() == 0) {
+                        if (e.isDirected() && e.getVertexOrigin() == v && e.getVertexDestination() == w) {
+
+                            this.d.add(w.getKey(), this.d.get(v.getKey()) + 1);
+                            w.setChecked(-1);
+                            this.Q.add(w);
+
+                        } else {
+
+                            this.d.add(w.getKey(), this.d.get(v.getKey()) + 1);
+                            w.setChecked(-1);
+                            this.Q.add(w);
+
+                        }
+                    }
                 }
             }
 
-            for (Vertex w : this.ADJ) {
-                if (w.getChecked() == 0) {
-                    this.d.set(w.getKey(), this.d.get(w.getKey() + 1));
-                    w.setChecked(-1);
-                    this.Q.add(w);
-                }
-            }
-
-            v.setChecked(1);
-
-            this.ADJ.clear();
+            v.setChecked(1); // marcado
         }
-	}
+    }
+
+    public String toString() // FIXME parei aqui
+    {
+        String msg = "";
+
+        for (int i = 0; i < this.Q.size(); i++) {
+            // msg += "|#| d => " + this.d.get(i) + " |-> s => " + this.s.get(i) + " |-> vertex => " + this.V.get(i).getKey() + " |#|" + System.lineSeparator();
+        }
+
+        return msg;
+    }
 
 }

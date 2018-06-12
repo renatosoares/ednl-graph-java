@@ -23,5 +23,5 @@ public interface IBreadthFirstSearch
         v.marcar=1; // marcado
     }
     */
-    public void search();
+    public void search(int vertex);
 }

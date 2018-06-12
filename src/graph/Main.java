@@ -105,5 +105,14 @@ public class Main
         System.out.print(dfs);
         System.out.println();
 
+        System.out.println();
+        System.out.print("%%%%%%%% BFS %%%%%%%%");
+        System.out.println();
+
+        DepthFirstSearch dfs = new DepthFirstSearch(g.vertex(), g);
+        dfs.search();
+        System.out.print(dfs);
+        System.out.println();
+
     }
 }
