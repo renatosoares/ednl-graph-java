@@ -1,6 +1,7 @@
 package graph;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.Queue;
 
@@ -20,6 +21,8 @@ public class BreadthFirstSearch implements IBreadthFirstSearch
 
         this.G = graph;
         this.ADJ = new ArrayList<Vertex>();
+
+        this.d = new ArrayList<Integer>();
     }
 
 	@Override
@@ -28,21 +31,18 @@ public class BreadthFirstSearch implements IBreadthFirstSearch
         Vertex s = this.V.get(vertexKey);
 
         for (Vertex v : this.V) {
-
-
+            this.Q.add(v);
 
             if (s == v) {
                 continue;
             }
 
             v.setChecked(0);
-
         }
         s.setChecked(-1);
         this.d.add(vertexKey, 0);
-        this.Q.add(s);
 
-        while (this.Q.isEmpty() != true) {
+        while (!this.Q.isEmpty()) {
             Vertex v = this.Q.remove();
 
             for (Vertex w : this.V) {
@@ -71,15 +71,14 @@ public class BreadthFirstSearch implements IBreadthFirstSearch
         }
     }
 
-    public String toString() // FIXME parei aqui
+    public String toString()
     {
         String msg = "";
 
-        for (int i = 0; i < this.Q.size(); i++) {
-            // msg += "|#| d => " + this.d.get(i) + " |-> s => " + this.s.get(i) + " |-> vertex => " + this.V.get(i).getKey() + " |#|" + System.lineSeparator();
+        for (int i = 0; i < this.d.size(); i++) {
+            msg += "|#| vértice => " + i + " |#| d => " + this.d.get(i) + System.lineSeparator();
         }
 
         return msg;
     }
-
 }
