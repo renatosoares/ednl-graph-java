@@ -1,20 +1,21 @@
 package graph;
 
 import java.util.ArrayList;
-import java.util.PriorityQueue;
+import java.util.Collection;
 
 public class VertexColoring implements IVertexColoring
 {
     private Graph G;
     private ArrayList<Vertex> vertices;
-    private PriorityQueue<Vertex> V;
-    private PriorityQueue<Vertex> T;
+    private ArrayList<Vertex> V;
+    private ArrayList<Vertex>[] T;
 
     public VertexColoring(Graph graph)
     {
         this.G = graph;
-        this.V = new PriorityQueue<Vertex>();
         this.vertices = this.G.vertex();
+        this.V = new ArrayList<Vertex>(this.vertices.size());
+        this.T[this.vertices.size()] = new ArrayList<Vertex>(this.vertices.size());
     }
 
     public void coloring()
@@ -28,19 +29,37 @@ public class VertexColoring implements IVertexColoring
 
         }
 
-        i = 1;
+        Collection.sort(this.V);
 
-        while (this.V.isEmpty() != true) {
-            this.T.add(this.V.poll());
+        i = 0;
 
-            Vertex vT = this.T.peek();
+        while (! this.V.isEmpty()) {
+            this.T[i].add(this.V.remove(0));
 
-            while (! this.G.isAdjacent(this.V.peek(), vT)) {
-                this.T.add(this.V.poll());
+            int k = 0;
+            while (! this.G.isAdjacent(this.V.get(k), this.T[i].get(j))) {
+                this.T[i].add(this.V.remove(k));
+
+                if (++k < this.V.size()) {
+                    k = 0;
+                    break;
+                }
             }
             i++;
         }
     }
 
+    public String toString()
+    {
+        String msg = "";
 
+        for (int i = 0; i < this.T.length; i++) {
+            for (int j = 0; j < this.T[i].size(); i++) {
+
+                msg += "|#| cor -> " + i + " |#| " + "|#| vértice -> " + this.T[i].get(j).getKey() + " |#| " + System.lineSeparator();
+            }
+        }
+
+        return msg;
+    }
 }

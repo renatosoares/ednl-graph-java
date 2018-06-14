@@ -6,13 +6,13 @@
     "configurations": [
         {
             "type": "java",
-            "name": "Debug (Launch)-Main<ednl-graph-java8>",
+            "name": "Debug (Launch)-Main<ednl-graph-java>",
             "request": "launch",
             "cwd": "${workspaceFolder}",
             "console": "internalConsole",
             "stopOnEntry": false,
             "mainClass": "graph.Main",
-            "projectName": "ednl-graph-java8",
+            "projectName": "ednl-graph-java",
             "args": ""
         }
     ]

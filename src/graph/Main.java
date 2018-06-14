@@ -8,6 +8,8 @@ public class Main
     {
         Graph g = new Graph();
 
+        Graph graphColor = new Graph();
+
         Vertex v0 = new Vertex(0, 10.00);
         Vertex v1 = new Vertex(1, 11.00);
         Vertex v2 = new Vertex(2, 12.00);
@@ -23,6 +25,11 @@ public class Main
         g.insertVertex(v4);
         g.insertVertex(v5);
         g.insertVertex(v6);
+
+        graphColor.insertVertex(v0);
+        graphColor.insertVertex(v1);
+        graphColor.insertVertex(v2);
+        graphColor.insertVertex(v3);
 
         System.out.print("%%%%%%%% insere vértice %%%%%%%%");
         System.out.println();
@@ -105,13 +112,22 @@ public class Main
         // System.out.print(dfs);
         // System.out.println();
 
+        // System.out.println();
+        // System.out.print("%%%%%%%% BFS %%%%%%%%");
+        // System.out.println();
+
+        // BreadthFirstSearch bfs = new BreadthFirstSearch(g.vertex(), g);
+        // bfs.search(0);
+        // System.out.print(bfs);
+        // System.out.println();
+
         System.out.println();
-        System.out.print("%%%%%%%% BFS %%%%%%%%");
+        System.out.print("%%%%%%%% Coloração de Grafos %%%%%%%%");
         System.out.println();
 
-        BreadthFirstSearch bfs = new BreadthFirstSearch(g.vertex(), g);
-        bfs.search(0);
-        System.out.print(bfs);
+        VertexColoring vcolor = new VertexColoring(graphColor);
+        vcolor.coloring();
+        System.out.print(vcolor);
         System.out.println();
 
     }

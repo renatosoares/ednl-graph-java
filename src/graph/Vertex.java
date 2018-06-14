@@ -1,6 +1,6 @@
 package graph;
 
-public class Vertex implements IVertex
+public class Vertex implements IVertex, Comparable
 {
 
     private int key;
@@ -70,4 +70,13 @@ public class Vertex implements IVertex
         return "|#| key => " + key + " |-> value => " + value + " |#|" + System.lineSeparator();
     }
 
+    public int compareTo(Vertex next) {
+        if (this.degree < next.degree) {
+            return 1;
+        }
+        if (this.numero > next.degree) {
+            return -1;
+        }
+        return 0;
+    }
 }
