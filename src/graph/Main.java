@@ -24,7 +24,6 @@ public class Main
         g.insertVertex(v3);
         g.insertVertex(v4);
         g.insertVertex(v5);
-        g.insertVertex(v6);
 
         graphColor.insertVertex(v0);
         graphColor.insertVertex(v1);
@@ -66,17 +65,17 @@ public class Main
 
 
         g.insertEdge(vertex.get(0), vertex.get(1), 30);
-        g.insertEdge(vertex.get(0), vertex.get(3), 30);
+        g.insertEdge(vertex.get(0), vertex.get(3), 31);
         g.insertEdge(vertex.get(0), vertex.get(5), 60);
 
         g.insertEdge(vertex.get(1), vertex.get(3), 10);
-        g.insertEdge(vertex.get(1), vertex.get(4), 30);
+        g.insertEdge(vertex.get(1), vertex.get(4), 32);
 
         g.insertEdge(vertex.get(2), vertex.get(4), 20);
-        g.insertEdge(vertex.get(2), vertex.get(5), 30);
+        g.insertEdge(vertex.get(2), vertex.get(5), 33);
 
-        g.insertEdge(vertex.get(3), vertex.get(4), 10);
-        g.insertEdge(vertex.get(3), vertex.get(5), 20);
+        g.insertEdge(vertex.get(3), vertex.get(4), 11);
+        g.insertEdge(vertex.get(3), vertex.get(5), 21);
 
         g.insertEdge(vertex.get(4), vertex.get(5), 50);
 
@@ -112,7 +111,7 @@ public class Main
         System.out.println();
 
         Dijkstra dkt = new Dijkstra(g.vertex(), g);
-        dkt.shortestPath(v2);
+        dkt.shortestPath(v0);
         System.out.print(dkt);
         System.out.println();
 

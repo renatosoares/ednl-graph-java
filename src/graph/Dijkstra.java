@@ -21,7 +21,7 @@ public class Dijkstra implements IDijkstra
         this.V = vertices;
         this.S = new ArrayList<Vertex>();
         this.D = new double[vertices.size()];
-        this.prev = new ArrayList<Vertex>();
+        this.prev = new ArrayList<Vertex>(vertices.size());
 
         this.G = G;
     }
@@ -50,13 +50,19 @@ public class Dijkstra implements IDijkstra
         }
 
         Vertex v;
+        boolean different = true;
         positionCurrentVertex = 0;
 
         while (this.S.size() != this.V.size()) {
             vertexMinCost = this.getMinCost(this.D, this.S.size());
             v = this.V.get(vertexMinCost);
             this.prev.set(vertexMinCost, this.S.get(this.S.size() - 1));
-            this.S.add(v);
+
+
+            if (! this.S.contains(v)) { // FIXME está gerendo loop infinito
+                this.S.add(v);
+            }
+
 
             for (Vertex w : this.V) {
                 if (this.S.contains(w)) {
@@ -149,6 +155,13 @@ public class Dijkstra implements IDijkstra
     public String toString()
     {
         String msg = "";
+
+        for (Vertex v : this.S) {
+            msg = msg + v.getKey();
+        }
+
+        msg = msg + System.lineSeparator();
+
         for (int i = 0; i < this.D.length; i++) {
             if (this.D[i] == 0) {
                 continue;
