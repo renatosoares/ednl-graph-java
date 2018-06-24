@@ -45,26 +45,40 @@ public class Main
 
         System.out.println();
 
-        g.insertEdgeDirected(vertex.get(0), vertex.get(1), 10);
-        g.insertEdgeDirected(vertex.get(0), vertex.get(3), 15);
+        // g.insertEdgeDirected(vertex.get(0), vertex.get(1), 10);
+        // g.insertEdgeDirected(vertex.get(0), vertex.get(3), 15);
 
 
-        g.insertEdgeDirected(vertex.get(1), vertex.get(3), 25);
-        g.insertEdgeDirected(vertex.get(1), vertex.get(4), 60);
+        // g.insertEdgeDirected(vertex.get(1), vertex.get(3), 25);
+        // g.insertEdgeDirected(vertex.get(1), vertex.get(4), 60);
 
-        g.insertEdgeDirected(vertex.get(2), vertex.get(0), 35);
-        g.insertEdgeDirected(vertex.get(2), vertex.get(5), 30);
+        // g.insertEdgeDirected(vertex.get(2), vertex.get(0), 35);
+        // g.insertEdgeDirected(vertex.get(2), vertex.get(5), 30);
 
-        g.insertEdgeDirected(vertex.get(3), vertex.get(2), 20);
-        g.insertEdgeDirected(vertex.get(3), vertex.get(4), 100);
-        g.insertEdgeDirected(vertex.get(3), vertex.get(5), 33);
-        g.insertEdgeDirected(vertex.get(3), vertex.get(6), 41);
+        // g.insertEdgeDirected(vertex.get(3), vertex.get(2), 20);
+        // g.insertEdgeDirected(vertex.get(3), vertex.get(4), 100);
+        // g.insertEdgeDirected(vertex.get(3), vertex.get(5), 33);
+        // g.insertEdgeDirected(vertex.get(3), vertex.get(6), 41);
 
-        g.insertEdgeDirected(vertex.get(4), vertex.get(6), 40);
+        // g.insertEdgeDirected(vertex.get(4), vertex.get(6), 40);
 
-        g.insertEdgeDirected(vertex.get(6), vertex.get(5), 45);
+        // g.insertEdgeDirected(vertex.get(6), vertex.get(5), 45);
 
 
+        g.insertEdge(vertex.get(0), vertex.get(1), 30);
+        g.insertEdge(vertex.get(0), vertex.get(3), 30);
+        g.insertEdge(vertex.get(0), vertex.get(5), 60);
+
+        g.insertEdge(vertex.get(1), vertex.get(3), 10);
+        g.insertEdge(vertex.get(1), vertex.get(4), 30);
+
+        g.insertEdge(vertex.get(2), vertex.get(4), 20);
+        g.insertEdge(vertex.get(2), vertex.get(5), 30);
+
+        g.insertEdge(vertex.get(3), vertex.get(4), 10);
+        g.insertEdge(vertex.get(3), vertex.get(5), 20);
+
+        g.insertEdge(vertex.get(4), vertex.get(5), 50);
 
         g.showMatrix();
 
@@ -93,14 +107,14 @@ public class Main
         // System.out.println();
         // System.out.print(g.eulerianPath());
 
-        // System.out.println();
-        // System.out.print("%%%%%%%% dijkstra %%%%%%%%");
-        // System.out.println();
+        System.out.println();
+        System.out.print("%%%%%%%% dijkstra %%%%%%%%");
+        System.out.println();
 
-        // Dijkstra dkt = new Dijkstra(g.vertex(), g);
-        // dkt.shortestPath(v0);
-        // System.out.print(dkt);
-        // System.out.println();
+        Dijkstra dkt = new Dijkstra(g.vertex(), g);
+        dkt.shortestPath(v2);
+        System.out.print(dkt);
+        System.out.println();
 
 
         // System.out.println();
@@ -121,14 +135,19 @@ public class Main
         // System.out.print(bfs);
         // System.out.println();
 
-        System.out.println();
-        System.out.print("%%%%%%%% Coloração de Grafos %%%%%%%%");
-        System.out.println();
+        // System.out.println();
+        // System.out.print("%%%%%%%% Coloração de Grafos %%%%%%%%");
+        // System.out.println();
 
-        VertexColoring vcolor = new VertexColoring(graphColor);
-        vcolor.coloring();
-        System.out.print(vcolor);
-        System.out.println();
+        // VertexColoring vcolor = new VertexColoring(graphColor);
+        // vcolor.coloring();
+        // System.out.print(vcolor);
+        // System.out.println();
+
+        // DepthFirstSearch dfs = new DepthFirstSearch(g.vertex(), g);
+        // dfs.search();
+        // System.out.print(dfs);
+        // System.out.println();
 
     }
 }

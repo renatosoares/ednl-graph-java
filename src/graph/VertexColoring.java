@@ -1,7 +1,7 @@
 package graph;
 
 import java.util.ArrayList;
-import java.util.Collection;
+import java.util.Collections;
 
 public class VertexColoring implements IVertexColoring
 {
@@ -29,7 +29,7 @@ public class VertexColoring implements IVertexColoring
 
         }
 
-        Collection.sort(this.V);
+        Collections.sort(this.V);
 
         i = 0;
 
@@ -37,7 +37,7 @@ public class VertexColoring implements IVertexColoring
             this.T[i].add(this.V.remove(0));
 
             int k = 0;
-            while (! this.G.isAdjacent(this.V.get(k), this.T[i].get(j))) {
+            while (! this.G.isAdjacent(this.V.get(k), this.T[i].get(k))) {
                 this.T[i].add(this.V.remove(k));
 
                 if (++k < this.V.size()) {
