@@ -50,19 +50,14 @@ public class Dijkstra implements IDijkstra
         }
 
         Vertex v;
-        boolean different = true;
         positionCurrentVertex = 0;
 
-        while (this.S.size() != this.V.size()) {
-            vertexMinCost = this.getMinCost(this.D, this.S.size());
+        while (! this.S.equals(this.V) && this.S.size() != this.D.length) {
+
+            vertexMinCost = this.getMinCost(this.D, this.S);
             v = this.V.get(vertexMinCost);
-            this.prev.set(vertexMinCost, this.S.get(this.S.size() - 1));
 
-
-            if (! this.S.contains(v)) { // FIXME está gerendo loop infinito
-                this.S.add(v);
-            }
-
+            this.S.add(v);
 
             for (Vertex w : this.V) {
                 if (this.S.contains(w)) {
@@ -92,7 +87,7 @@ public class Dijkstra implements IDijkstra
     /**
      * retorna custo se existir aresta adjacente
      */
-    protected double hasEdge(Vertex source, Vertex next) // TODO
+    protected double hasEdge(Vertex source, Vertex next)
     {
         ArrayList edgesList;
         if (source == next) {
@@ -127,25 +122,32 @@ public class Dijkstra implements IDijkstra
      /**
      * Pega o valor mínimo do array
      */
-    private int getMinCost(double[] list, int init)
+    private int getMinCost(double[] list, ArrayList cloud)
     {
+        int init = 0;
         double minValue;
         minValue = list[init];
 
         int position = init;
-        init++;
-        for (int i = init; i < list.length; i++) {
 
-            if (minValue == 0) {
-                minValue = list[i];
-                position = i;
+        for (int i = 0; i < list.length; i++) {
+
+            if (cloud.contains(this.V.get(i))) {
                 continue;
+            } else {
+                if (minValue == 0) {
+                    minValue = list[i];
+                    position = i;
+                    continue;
+                }
+
+                if (list[i] < minValue && list[i] != 0) {
+                    minValue = list[i];
+                    position = i;
+                }
             }
 
-            if (list[i] < minValue && list[i] != 0) {
-                minValue = list[i];
-                position = i;
-            }
+
         }
 
         return position;
@@ -166,7 +168,7 @@ public class Dijkstra implements IDijkstra
             if (this.D[i] == 0) {
                 continue;
             }
-            msg = msg + " ## custo -> " + Double.toString(this.D[i]) + " | Vértice anterior -> " + this.prev.get(i).getKey() + "## " + System.lineSeparator();
+            msg = msg + " ## Para vértice " + i + " = custo -> " + Double.toString(this.D[i]) + " | Vértice anterior -> " + this.prev.get(i).getKey() + " ## " + System.lineSeparator();
         }
         return msg;
     }
