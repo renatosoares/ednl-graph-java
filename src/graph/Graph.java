@@ -271,4 +271,33 @@ public class Graph implements IGraph
         }
 
     }
+
+	@Override
+	public double hasEdge(Vertex source, Vertex next) {
+        ArrayList edgesList;
+        if (source == next) {
+            return 0;
+        } else if (! this.isAdjacent(source, next)) {
+            return Double.POSITIVE_INFINITY;
+        } else {
+            edgesList = this.getEdge(source, next);
+            return this.getMinParallelCost(edgesList);
+        }
+	}
+
+	@Override
+	public double getMinParallelCost(ArrayList<Edge> list) {
+        Edge e = list.get(0);
+        double minValue = e.getValue();
+
+        if (list.size() > 1) {
+            for (int i = 1; i < list.size(); i++) {
+                if (list.get(i).getValue() < minValue) {
+                    minValue = list.get(i).getValue();
+                }
+            }
+        }
+
+        return minValue;
+	}
 }

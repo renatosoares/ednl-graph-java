@@ -42,6 +42,17 @@ public interface IGraph
      */
     public abstract ArrayList getEdge(Vertex v, Vertex w);
 
+    /**
+     * retorna custo se existir aresta adjacente
+     */
+    public double hasEdge(Vertex source, Vertex next);
+
+
+    /**
+     * Pega o valor mínimo da aresta paralela
+     */
+    public double getMinParallelCost(ArrayList<Edge> list);
+
 
 // %%%%%%%%%%%%%%%%%%%%% Atualização simplificado %%%%%%%%%%%%%%%%%%%%% //
 

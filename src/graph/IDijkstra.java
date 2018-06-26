@@ -1,7 +1,5 @@
 package graph;
 
-import java.util.ArrayList;
-
 public interface IDijkstra
 {
 /**
@@ -36,5 +34,5 @@ public interface IDijkstra
         }
     }
 */
-    public ArrayList shortestPath(Vertex source);
+    public void shortestPath(Vertex source);
 }

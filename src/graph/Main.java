@@ -30,7 +30,7 @@ public class Main
         graphColor.insertVertex(v2);
         graphColor.insertVertex(v3);
 
-        System.out.print("%%%%%%%% insere vértice %%%%%%%%");
+        System.out.println("%%%%%%%% insere vértice %%%%%%%%");
         System.out.println();
 
         g.showVertex();
@@ -40,7 +40,7 @@ public class Main
         ArrayList<Vertex> vertex = g.vertex();
 
         System.out.println();
-        System.out.print("%%%%%%%% Matriz Adjacente %%%%%%%%");
+        System.out.println("%%%%%%%% Matriz Adjacente %%%%%%%%");
 
         System.out.println();
 
@@ -107,7 +107,7 @@ public class Main
         // System.out.print(g.eulerianPath());
 
         System.out.println();
-        System.out.print("%%%%%%%% dijkstra %%%%%%%%");
+        System.out.println("%%%%%%%% dijkstra %%%%%%%%");
         System.out.println();
 
         Dijkstra dkt = new Dijkstra(g.vertex(), g);

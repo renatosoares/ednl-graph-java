@@ -4,131 +4,69 @@ import java.util.ArrayList;
 
 /**
  * Dijkstra
-
  */
 public class Dijkstra implements IDijkstra
 {
     private ArrayList<Vertex> S;
     private ArrayList<Vertex> V;
     private double[] D;
-    private ArrayList<Vertex> prev;
-    private Vertex W;
+    private ArrayList<Vertex> antecessor;
     private Graph G;
 
 
-    public Dijkstra(ArrayList vertices, Graph G)
+    public Dijkstra(ArrayList<Vertex> vertices, Graph graph)
     {
         this.V = vertices;
         this.S = new ArrayList<Vertex>();
         this.D = new double[vertices.size()];
-        this.prev = new ArrayList<Vertex>(vertices.size());
+        this.antecessor = new ArrayList<Vertex>(vertices.size());
 
-        this.G = G;
+        this.G = graph;
     }
 
 	@Override
-    public ArrayList shortestPath(Vertex source)
+    public void shortestPath(Vertex source)
     {
-        this.S.add(source);
-        int positionCurrentVertex;
-        double cost;
-        double minCost;
-
         double firstValue;
         double lastValue;
+        Vertex w;
 
-        int vertexMinCost;
+        this.S.add(source);
 
         for (Vertex v : this.V) {
-            positionCurrentVertex = this.V.indexOf(v);
-
-            cost = this.hasEdge(source, v);
-
-            this.prev.add(positionCurrentVertex, this.V.get(0));
-            this.D[positionCurrentVertex] = cost;
-
+            this.D[v.getKey()] = this.G.hasEdge(source, v);
+            this.antecessor.add(v.getKey(), this.V.get(0));
         }
 
-        Vertex v;
-        positionCurrentVertex = 0;
+        while (this.S.size() != this.V.size()) {
 
-        while (! this.S.equals(this.V) && this.S.size() != this.D.length) {
+            w = this.getMinCost(this.D, this.S);
+            this.S.add(w);
 
-            vertexMinCost = this.getMinCost(this.D, this.S);
-            v = this.V.get(vertexMinCost);
-
-            this.S.add(v);
-
-            for (Vertex w : this.V) {
-                if (this.S.contains(w)) {
+            for (Vertex v : this.V) {
+                if (this.S.contains(v)) {
                     continue;
+
                 } else {
-                    positionCurrentVertex = this.V.indexOf(w);
-
-                    firstValue = this.D[positionCurrentVertex];
-
-                    lastValue =  this.D[vertexMinCost] + hasEdge(w, v);
-
-                    minCost = Math.min(firstValue, lastValue);
-                    this.D[positionCurrentVertex] = minCost;
+                    firstValue = this.D[v.getKey()];
+                    lastValue =  this.D[w.getKey()] + this.G.hasEdge(w, v);
+                    this.D[v.getKey()] = Math.min(firstValue, lastValue);
 
                     if (lastValue < firstValue) {
-                        prev.set(positionCurrentVertex, v);
+                        antecessor.set(v.getKey(), w);
                     }
-
                 }
-
             }
-        }
-
-		return prev;
-    }
-
-    /**
-     * retorna custo se existir aresta adjacente
-     */
-    protected double hasEdge(Vertex source, Vertex next)
-    {
-        ArrayList edgesList;
-        if (source == next) {
-            return 0;
-        } else if (! this.G.isAdjacent(source, next)) {
-            return Double.POSITIVE_INFINITY;
-        } else {
-            edgesList = this.G.getEdge(source, next);
-            return this.getMinParallelCost(edgesList);
         }
     }
 
     /**
-     * Pega o valor mínimo da aresta paralela
-     */
-    private double getMinParallelCost(ArrayList<Edge> list)
+    * Pega o valor mínimo do array, e retorna o vértice ligado a esse valor
+    */
+    private Vertex getMinCost(double[] list, ArrayList<Vertex> cloud)
     {
-        Edge e = list.get(0);
-        double minValue = e.getValue();
-
-        if (list.size() > 1) {
-            for (int i = 1; i < list.size(); i++) {
-                if (list.get(i).getValue() < minValue) {
-                    minValue = list.get(i).getValue();
-                }
-            }
-        }
-
-        return minValue;
-    }
-
-     /**
-     * Pega o valor mínimo do array
-     */
-    private int getMinCost(double[] list, ArrayList cloud)
-    {
-        int init = 0;
-        double minValue;
-        minValue = list[init];
-
-        int position = init;
+        double minValue = list[0];
+        int position = 0;
 
         for (int i = 0; i < list.length; i++) {
 
@@ -139,18 +77,15 @@ public class Dijkstra implements IDijkstra
                     minValue = list[i];
                     position = i;
                     continue;
-                }
 
-                if (list[i] < minValue && list[i] != 0) {
+                } else if (list[i] < minValue && list[i] != 0) {
                     minValue = list[i];
                     position = i;
                 }
             }
-
-
         }
 
-        return position;
+        return this.V.get(position);
     }
 
     @Override
@@ -159,16 +94,21 @@ public class Dijkstra implements IDijkstra
         String msg = "";
 
         for (Vertex v : this.S) {
-            msg = msg + v.getKey();
+            if (this.S.indexOf(v) == 0) {
+                msg += v.getKey();
+            } else {
+                msg += " => " + v.getKey();
+            }
         }
 
-        msg = msg + System.lineSeparator();
+        msg += System.lineSeparator();
+        msg += System.lineSeparator();
 
         for (int i = 0; i < this.D.length; i++) {
             if (this.D[i] == 0) {
                 continue;
             }
-            msg = msg + " ## Para vértice " + i + " = custo -> " + Double.toString(this.D[i]) + " | Vértice anterior -> " + this.prev.get(i).getKey() + " ## " + System.lineSeparator();
+            msg += " ## Para vértice " + i + " = custo -> " + Double.toString(this.D[i]) + " | Vértice antecessor -> " + this.antecessor.get(i).getKey() + " ## " + System.lineSeparator();
         }
         return msg;
     }
