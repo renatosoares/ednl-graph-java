@@ -53,7 +53,7 @@ public class Dijkstra implements IDijkstra
                     this.D[v.getKey()] = Math.min(firstValue, lastValue);
 
                     if (lastValue < firstValue) {
-                        antecessor.set(v.getKey(), w);
+                        this.antecessor.set(v.getKey(), w);
                     }
                 }
             }
